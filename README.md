@@ -22,7 +22,7 @@
   </p>
 
   <p align="center">
-    <a href='https://arxiv.org/pdf/2312.02528.pdf'>
+    <a href='https://arxiv.org/pdf/2312.02528v2.pdf'>
       <img src='https://img.shields.io/badge/Paper-PDF-green?style=flat&logo=arXiv&logoColor=green' alt='arXiv PDF'>
     </a>
     <a href='https://xiaoqi-zhao-dlut.github.io/xray_pbd_cvpr2024/' style='padding-left: 0.5rem;'>
