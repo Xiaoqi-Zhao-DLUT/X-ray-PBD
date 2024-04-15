@@ -83,12 +83,17 @@ Power Battery Detection (PBD) aims to judge whether the battery cell is OK or NG
     <img src="./image/Ai4Industry_GPT.png"/> <br />
 </p> 
 
+## Datasets 
+-  **X-ray PBD (raw data)**: [Google Drive](https://drive.google.com/file/d/1d_b1V9XimIZSVVPxr3WlKaBtUsIGr9Mq/view?usp=sharing)
+-  **X-ray PBD (training data processed in this work)**: [Google Drive](https://drive.google.com/file/d/181Ct0wX05Wc5Ac_LCCgMO9q50vmdGky5/view?usp=sharing)
+
+## Trained Model
+-  You can download the trained MDCNet model at [Google Drive](https://drive.google.com/file/d/1NU0xWcRwipYkgj1YxMABoO-Kd3VRcdPU/view?usp=sharing) 
 ## To Do List
 
-- Release data sets. (to do)
-- Release model code. (to do)
-- Release model weights. (to do)
-- Release prediction maps. (to do)
+- [x] Release data sets.
+- [x] Release model code.
+- [x] Release model weights.
 
 
 
