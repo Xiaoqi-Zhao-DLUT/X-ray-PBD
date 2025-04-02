@@ -123,7 +123,7 @@ class MDCNet_fcn(nn.Module):
         ################################Gated Parallel&Dual branch residual fuse#######################################
         output_fpn_p = F.upsample(D1_1, size=input.size()[2:], mode='bilinear')
         neg_map = F.sigmoid(output_fpn_p[:, 0, :, :].unsqueeze(1))
-        pos_map = F.sigmoid(output_fpn_p[:, 0, :, :].unsqueeze(1))
+        pos_map = F.sigmoid(output_fpn_p[:, 1, :, :].unsqueeze(1))
         neg_input = neg_map
         pos_input = pos_map
 
