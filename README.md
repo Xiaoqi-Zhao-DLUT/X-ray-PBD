@@ -1,94 +1,79 @@
-<br />
-<p align="center">
-  <h1 align="center">Towards Automatic Power Battery Detection:  New Challenge, Benchmark Dataset and Baseline</h1>
-  <p align="center">
-    CVPR, 2024
-    <br />
-    <a href="https://xiaoqi-zhao-dlut.github.io/"><strong>Xiaoqi Zhao*</strong></a>
-    ·
-    <a href="https://lartpang.github.io/"><strong>Youwei Pang*</strong></a>
-    .
-    <a ><strong>Zhenyu Chen</strong></a>
-    .
-    <a ><strong>Qian Yu</strong></a>
-    ·
-    <a href="https://scholar.google.com/citations?hl=zh-CN&user=XGPdQbIAAAAJ"><strong>Lihe Zhang*</strong></a>
-    ·
-      <a ><strong>Hanqi Liu</strong></a>
-    .
-     <a ><strong>Jiaming Zuo*</strong></a>
-    ·
-    <a href="https://scholar.google.com/citations?hl=zh-CN&user=D3nE0agAAAAJ"><strong>Huchuan Lu</strong></a>
-  </p>
+# [CVPR'24/arXiv'25] Power Battery Detection
 
-  <p align="center">
-    <a href='https://arxiv.org/pdf/2312.02528v2.pdf'>
-      <img src='https://img.shields.io/badge/Paper-PDF-green?style=flat&logo=arXiv&logoColor=green' alt='arXiv PDF'>
-    </a>
-    <a href='https://xiaoqi-zhao-dlut.github.io/xray_pbd_cvpr2024/' style='padding-left: 0.5rem;'>
-      <img src='https://img.shields.io/badge/Project-Page-blue?style=flat&logo=Google%20chrome&logoColor=blue' alt='Project Page'>
-    </a>
-  </p>
-<br />
+This repo is for the following two works:
 
-## !! If you are interested in Ai4Industury, feel free to contact with us via Email (zxq@mail.dlut.edu.cn, lartpang@mail.dlut.edu.cn)
+**Power Battery Detection** [[Paper]](https://arxiv.org/pdf/2312.02528v2.pdf) 
+<br>_Xiaoqi Zhao, Peiqian Cao, Lihe Zhang, Zonglei Feng, Hanqi Liu, Jiaming Zuo, Youwei Pang, Weisi Lin, Georges El Fakhri, Huchuan Lu, Xiaofeng Liu_<br>
+In arXiv 2025 (T-PAMI under review)
 
-## Task Definition
-<p align="center">
-    <img src="./image/pbd_taskpng.png"/> <br />
-</p>
-Power Battery Detection (PBD) aims to judge whether the battery cell is OK or NG based on the number and overhang. Therefore, object counting and localization are necessary processing for PBD, which can provide accurate coordinate information for all anode and cathode endpoints.
+**Towards Automatic Power Battery Detection:  New Challenge, Benchmark Dataset and Baseline** [[Paper]](https://arxiv.org/pdf/2312.02528v2.pdf) 
+<br>_Xiaoqi Zhao, Youwei Pang, Zhenyu Chen, Qian Yu, Lihe Zhang, Hanqi Liu, Jiaming Zuo, Huchuan Lu_<br>
+In CVPR 2024
 
 
+### !! If you are interested in Ai4Industry, feel free to contact with us via Email (xiaoqi.zhao@yale.edu, lartpang@gmail.com)
+
+## News
+- Our extension work "**Power Battery Detection**" is available at [arXiv](https://arxiv.org/pdf/2312.02528v2.pdf).
+  
+## Motivation of Power Battery Detection
+| PBD5K |
+| --- |
+| <img src="./image/motivation_PBD.png" width="800"/> |
+
+ (a) EV sales are rapidly increasing, raising battery safety demands. (b) Battery packs account for ∼35%
+ of EV cost, highlighting their critical role. (c) Assembly process of power batteries for EVs, where PBD is applied to the battery cells before assembly. (d)
+ Illustration of the power battery detection task.
+ 
 ## Dataset
-<p align="center">
-    <img src="./image/datasets_characteristic -1.png"/> <br />
-</p> 
+| PBD5K | Co-occurrence distribution of attributes |
+| --- | --- |
+| <img src="./image/PBD5K.png" width="400"/> | <img src="./image/PBD5K_1.png" width="400"/> |
 
-- Statistics of the X-ray PBD dataset. (a) Taxonomic of interference and shots. (b) Overhang distributions. (c) Number distributions. (d) Co-occurrence  distribution of attributes. (e) Multi-dependencies among these attributes.
- 
- <p align="center">
-    <img src="./image/battery_class.png"/> <br />
-</p>     
+|  Structural diversity | Attribute descriptions |
+| --- | --- |
+| <img src="./image/PBD5K_2.png" width="400"/> | <img src="./image/attribute_PBD5K.png" width="400"/> |
 
-- Examples of various attributes from our X-ray PBD dataset (best viewed zoomed in).
- 
- <p align="center">
-    <img src="./image/attribute_description.png"/> <br />
-</p> 
+|  Visual examples from the PBD5K dataset |
+| --- |
+| <img src="./image/Visual_PBD5K.png" width="800"/> |
 
-- Attribute descriptions.
 
-## Future Works
-- How to better model PBD is still an open problem.
-- Semi/self-supervised and few-shot learning techniques.
-- Extend the PBD dataset to a 3D form with the help of CT device, which can provide richer internal slices information. 
-- Ai4Industury-Image Blind Enhancement.
-   <p align="center">
-    <img src="./image/future_work_enhance.png"/> <br />
-</p> 
+## Solution & Framework 
+|   Multi-clue mining with point, line and number clues |
+| --- |
+| <img src="./image/solution.png" width="800"/> |
 
-- Ai4Industury-CT Reconstruction.
-     <p align="center">
-    <img src="./image/3D_re.png"/> <br />
-</p> 
+|   MDCNeXt |
+| --- |
+| <img src="./image/MDCNeXt.png" width="800"/> |
 
-- Ai4Industury-Multimodal Unified Model.
-     <p align="center">
-    <img src="./image/Unifiied_model.png"/> <br />
-</p> 
+## Visual Comparison
+|   Qualitative results on regular, difficult,and tough examples with varying attributes |
+| --- |
+| <img src="./image/Visual_result.png" width="800"/> |
 
-- Ai4Industury-GPT.
-     <p align="center">
-    <img src="./image/Ai4Industry_GPT.png"/> <br />
-</p> 
+|   Visual comparison with other  general/tinyobject detection-based, counting-based,  corner detection-based solutions|
+| --- |
+| <img src="./image/Visual_comparsion.png" width="800"/> |
 
-## Datasets 
+|   Visual comparison with different image segmentation methods|
+| --- |
+| <img src="./image/Visual_comparsion_2.png" width="800"/> |
+
+## Datasets Link
+-  **PBD5K**: [GitHub Release](https://github.com/Xiaoqi-Zhao-DLUT/X-ray-PBD/releases/tag/Dataset)
 -  **X-ray PBD (raw data)**: [Google Drive](https://drive.google.com/file/d/1d_b1V9XimIZSVVPxr3WlKaBtUsIGr9Mq/view?usp=sharing)
--  **X-ray PBD (training data processed in this work)**: [Google Drive](https://drive.google.com/file/d/181Ct0wX05Wc5Ac_LCCgMO9q50vmdGky5/view?usp=sharing)
+-  **X-ray PBD (training data processed in MDCNet)**: [Google Drive](https://drive.google.com/file/d/181Ct0wX05Wc5Ac_LCCgMO9q50vmdGky5/view?usp=sharing)
 
 ## Trained Model
--  You can download the trained MDCNet model at [Google Drive](https://drive.google.com/file/d/1NU0xWcRwipYkgj1YxMABoO-Kd3VRcdPU/view?usp=sharing) 
+-  You can download the trained MDCNeXt model at  [GitHub Release](https://github.com/Xiaoqi-Zhao-DLUT/X-ray-PBD/releases/tag/Model_pth)
+-  You can download the trained PBD5K_Crop model at  [GitHub Release](https://github.com/Xiaoqi-Zhao-DLUT/X-ray-PBD/releases/tag/Model_pth)
+-  You can download the trained MDCNet model at [Google Drive](https://drive.google.com/file/d/1NU0xWcRwipYkgj1YxMABoO-Kd3VRcdPU/view?usp=sharing)
+
+## Prediction Maps
+-  You can download the prediction (crop_point_mask, location, original point mask) at  [GitHub Release](https://github.com/Xiaoqi-Zhao-DLUT/X-ray-PBD/releases/tag/Prediction_MDCNeXt)
+
 ## To Do List
 
 - [x] Release data sets.
