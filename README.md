@@ -94,7 +94,7 @@ Here’s your **infer** section rewritten in clear English, following a typical 
    ```
 
 3. **Install the `csrc` module**
-   Download the `csrc` folder and place it in the project directory so that the structure looks like this:
+   Download the `csrc` [GitHub Release](https://github.com/Xiaoqi-Zhao-DLUT/X-ray-PBD/releases/tag/csrc)  and place it in the project directory so that the structure looks like this:
 
    ```
    ├── model/
