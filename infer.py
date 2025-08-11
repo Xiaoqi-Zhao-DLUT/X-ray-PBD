@@ -4,7 +4,7 @@ from torch.autograd import Variable
 from torchvision import transforms
 from utils.config import dataset_root_test
 from utils.misc import check_mkdir
-from model.MDCNet import MDCNet_fcn,Region_seg
+from model.MDCNeXt import Region_seg, MDCNeXt
 import ttach as tta
 import torch.nn.functional as F
 import cv2
@@ -12,11 +12,11 @@ import numpy as np
 torch.manual_seed(2018)
 torch.cuda.set_device(0)
 
-ckpt_path = '' # model_pth
-anchor_img_path = '' # input_anchor_path
+ckpt_path = './' # model_pth
+anchor_img_path = './YXTP00574-NG-20210705081014963-1_duofuduo_sangdun-clear.jpg' # input_anchor_path
 args = {
-    'snapshot1': 'Region_seg',
-    'snapshot2': 'MDCNet_seg',
+    'snapshot1': 'PBD5K_Crop',
+    'snapshot2': 'MDCNeXt',
     'crf_refine': False,
     'save_results': True
 }
@@ -31,15 +31,16 @@ depth_transform = transforms.ToTensor()
 target_transform = transforms.ToTensor()
 to_pil = transforms.ToPILImage()
 
-to_test = {'PBD_test':dataset_root_test}
+to_test = {'PBD5K':dataset_root_test}
 transforms = tta.Compose(
     [
         tta.HorizontalFlip(),
         tta.Scale(scales=[0.75,1,1.25], interpolation='bilinear', align_corners=False),
+        tta.Scale(scales=[1], interpolation='bilinear', align_corners=False),
     ]
 )
 
-def Resize(image,H, W):
+def Resize(image,W, H):
     image = cv2.resize(image, dsize=(W, H), interpolation=cv2.INTER_LINEAR)
     return image
 
@@ -78,7 +79,7 @@ def Normalize(image, mean, std):
 
 def main():
     net1 = Region_seg().cuda()
-    net2 = MDCNet_fcn().cuda()
+    net2 = MDCNeXt().cuda()
     print ('load snapshot \'%s\' for testing' % args['snapshot2'])
     net1.load_state_dict(torch.load(os.path.join(ckpt_path, args['snapshot1']+'.pth'),map_location={'cuda:1': 'cuda:1'}))
     net2.load_state_dict(torch.load(os.path.join(ckpt_path, args['snapshot2']+'.pth'),map_location={'cuda:1': 'cuda:1'}))
@@ -97,8 +98,8 @@ def main():
 
                 w_,h_,_ = img.shape
                 w_anchor,h_anchor,_ = anchor_img.shape
-                img_resize = Resize(img,352,352)
-                anchor_img_resize = Resize(anchor_img,352,352)
+                img_resize = Resize(img,1024,1024)
+                anchor_img_resize = Resize(anchor_img,1024,1024)
                 img_var = Variable(img_transform(img_resize).unsqueeze(0), volatile=True).cuda()
                 anchor_img_var = Variable(img_transform(anchor_img_resize).unsqueeze(0), volatile=True).cuda()
 
@@ -122,6 +123,7 @@ def main():
                 anchor_output[anchor_output != 255] = 0
 
 
+                
                 crop_x, crop_y, crop_w, crop_h, s = cal_maxS_ringS(res)
                 crop_x_anchor, crop_y_anchor, crop_w_anchor, crop_h_anchor, s_anchor = cal_maxS_ringS(anchor_output)
                 img_crop = img[crop_y:crop_y + crop_h, crop_x:crop_x + crop_w]
@@ -129,8 +131,8 @@ def main():
 
 
                 w_crop, h_crop, _ = img_crop.shape
-                img_crop_resize = Resize(img_crop, 352, 352)
-                anchor_img_crop_resize = Resize(anchor_img_crop, 352, 352)
+                img_crop_resize = Resize(img_crop, 512,512 )
+                anchor_img_crop_resize = Resize(anchor_img_crop, 512, 512)
                 img_crop_var = Variable(img_transform(img_crop_resize).unsqueeze(0), volatile=True).cuda()
                 anchor_img_crop_var = Variable(img_transform(anchor_img_crop_resize).unsqueeze(0), volatile=True).cuda()
                 n, c, h, w = img_crop_var.size()
@@ -170,7 +172,7 @@ def main():
                 prediction_pos_crop[prediction_pos_crop > 128] = 255
                 prediction_pos_crop[prediction_pos_crop != 255] = 0
 
-                #
+                # #
                 prediction_original_neg = np.zeros((img.shape[0], img.shape[1]), np.uint8)
                 prediction_original_pos = np.zeros((img.shape[0], img.shape[1]), np.uint8)
                 prediction_original_neg[crop_y:crop_y + crop_h, crop_x:crop_x + crop_w] = prediction_neg_crop
@@ -192,6 +194,10 @@ def main():
                     check_mkdir(os.path.join(ckpt_path,args['snapshot2']+'epoch',name,'pos_location'))
                     check_mkdir(os.path.join(ckpt_path,args['snapshot2']+'epoch',name,'neg_point_mask'))
                     check_mkdir(os.path.join(ckpt_path,args['snapshot2']+'epoch',name,'pos_point_mask'))
+                    check_mkdir(os.path.join(ckpt_path,args['snapshot2']+'epoch',name,'crop_neg_point_mask'))
+                    check_mkdir(os.path.join(ckpt_path,args['snapshot2']+'epoch',name,'crop_pos_point_mask'))
+                    cv2.imwrite(os.path.join(ckpt_path ,args['snapshot2']+'epoch',name, 'crop_neg_point_mask',img_name[:-4] + '.png'), prediction_neg_crop)
+                    cv2.imwrite(os.path.join(ckpt_path ,args['snapshot2']+'epoch',name, 'crop_pos_point_mask',img_name[:-4] + '.png'), prediction_pos_crop)
                     cv2.imwrite(os.path.join(ckpt_path ,args['snapshot2']+'epoch',name, 'neg_point_mask',img_name[:-4] + '.png'), prediction_original_neg)
                     cv2.imwrite(os.path.join(ckpt_path ,args['snapshot2']+'epoch',name, 'pos_point_mask',img_name[:-4] + '.png'), prediction_original_pos)
                     np.save(os.path.join(ckpt_path ,args['snapshot2']+'epoch',name,'neg_location', img_name[:-4] + '.npy'), neg_list)
