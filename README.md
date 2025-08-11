@@ -123,7 +123,6 @@ Here’s your **infer** section rewritten in clear English, following a typical 
 ## Prediction Maps
 -  You can download the prediction (crop_point_mask, location, original point mask) at  [GitHub Release](https://github.com/Xiaoqi-Zhao-DLUT/X-ray-PBD/releases/tag/Prediction_MDCNeXt)
 
-Here’s the **Evaluation** section in clean README-style English:
 
 ---
 
