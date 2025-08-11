@@ -88,15 +88,15 @@ class cal_neg_pos_num_acc(object):
         return np.mean(self.prediction)
 
 
-###一定是neg和pos数量都准确的情况下，这个指标才有意义。叠片的neg要比pos多一个，一个pos需要与两个neg算两个overhang
+
 class cal_neg_pos_overhang(object):
     # mean absolute error
     def __init__(self):
         self.prediction = []
-    def update(self, pred_neg, gt_neg, pred_pos, gt_pos):
-        score = self.cal(pred_neg, gt_neg, pred_pos, gt_pos)
+    def update(self, pred_neg, gt_neg, pred_pos, gt_pos,h,w):
+        score = self.cal(pred_neg, gt_neg, pred_pos, gt_pos,h,w)
         self.prediction.append(score)
-    def cal(self, pred_neg, gt_neg, pred_pos, gt_pos):
+    def cal(self, pred_neg, gt_neg, pred_pos, gt_pos,h,w):
         overhang = []
         for i in range(len(pred_pos)):
             pred_ovrehang_left = abs(pred_neg[i][0]-pred_pos[i][0])
@@ -107,7 +107,7 @@ class cal_neg_pos_overhang(object):
             mae_overhang_right = abs(pred_ovrehang_right-gt_ovrehang_right)
             overhang.append(mae_overhang_left)
             overhang.append(mae_overhang_right)
-        return np.mean(overhang)
+        return np.mean(overhang)/ (h * w)  # normalize by image size
     def show(self):
         return np.mean(self.prediction)
 
@@ -117,15 +117,15 @@ class cal_neg_location(object):
     # mean absolute error
     def __init__(self):
         self.prediction = []
-    def update(self, pred_neg, gt_neg):
-        score = self.cal(pred_neg, gt_neg)
+    def update(self, pred_neg, gt_neg,h,w):
+        score = self.cal(pred_neg, gt_neg,h,w)
         self.prediction.append(score)
-    def cal(self, pred_neg, gt_neg):
+    def cal(self, pred_neg, gt_neg,h,w):
         location = []
         for i in range(len(pred_neg)):
             distance = math.sqrt(math.pow(pred_neg[i][0]-gt_neg[i][0],2)+math.pow(pred_neg[i][1]-gt_neg[i][1],2))
             location.append(distance)
-        return np.mean(location)
+        return np.mean(location)/ (h * w)  # normalize by image size
     def show(self):
         return np.mean(self.prediction)
 
@@ -135,15 +135,15 @@ class cal_pos_location(object):
     # mean absolute error
     def __init__(self):
         self.prediction = []
-    def update(self, pred_pos, gt_pos):
-        score = self.cal(pred_pos, gt_pos)
+    def update(self, pred_pos, gt_pos,h,w):
+        score = self.cal(pred_pos, gt_pos,h,w)
         self.prediction.append(score)
-    def cal(self, pred_pos, gt_pos):
+    def cal(self, pred_pos, gt_pos,h,w):
         location = []
         for i in range(len(pred_pos)):
             distance = math.sqrt(math.pow(pred_pos[i][0]-gt_pos[i][0],2)+math.pow(pred_pos[i][1]-gt_pos[i][1],2))
             location.append(distance)
-        return np.mean(location)
+        return np.mean(location)/ (h * w) # normalize by image size
     def show(self):
         return np.mean(self.prediction)
 
