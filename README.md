@@ -71,8 +71,87 @@ In CVPR 2024
 -  You can download the trained PBD5K_Crop model at  [GitHub Release](https://github.com/Xiaoqi-Zhao-DLUT/X-ray-PBD/releases/tag/Model_pth)
 -  You can download the trained MDCNet model at [Google Drive](https://drive.google.com/file/d/1NU0xWcRwipYkgj1YxMABoO-Kd3VRcdPU/view?usp=sharing)
 
+Here’s your **infer** section rewritten in clear English, following a typical GitHub README style:
+
+---
+
+## **Inference**
+
+1. **Configure the test dataset path**
+   After downloading the dataset, edit `utils/config.py` to set the test dataset path:
+
+   ```python
+   # utils/config.py
+   test_data_path = '/path/to/your/test_dataset'
+   ```
+
+2. **Configure the model checkpoint path**
+   After downloading the pre-trained weights, edit `infer.py` to set the checkpoint path:
+
+   ```python
+   # infer.py
+   ckpt_path = '/path/to/your/model_weights.pth'
+   ```
+
+3. **Install the `csrc` module**
+   Download the `csrc` folder and place it in the project directory so that the structure looks like this:
+
+   ```
+   ├── model/
+   │   └── MDCNeXt.py
+   ├── csrc/
+   │   ├── ...
+   │   ├── ...
+   │   └── setup.py
+   ```
+
+   Then run:
+
+   ```bash
+   cd csrc
+   python setup.py install
+   ```
+
+4. **Run inference**
+   Once the `csrc` module is installed, run:
+
+   ```bash
+   python infer.py
+   ```
+
+
 ## Prediction Maps
 -  You can download the prediction (crop_point_mask, location, original point mask) at  [GitHub Release](https://github.com/Xiaoqi-Zhao-DLUT/X-ray-PBD/releases/tag/Prediction_MDCNeXt)
+
+Here’s the **Evaluation** section in clean README-style English:
+
+---
+
+## **Evaluation**
+
+### **1. PBD Metrics**
+
+1. Edit `config.py` to set the dataset root and model (prediction) path:
+
+   ```python
+   # config.py
+   dataset_root_test = './'   # Path containing the test dataset
+   Model = ''                 # prediction_path: directory containing both test dataset and predictions
+   ```
+2. Run:
+
+   ```bash
+   python test_score.py
+   ```
+
+---
+
+### **2. Segmentation Metrics**
+
+For segmentation evaluation, please use the official toolkit:
+[**PySegMetric\_EvalToolkit**](https://github.com/Xiaoqi-Zhao-DLUT/PySegMetric_EvalToolkit)
+
+
 
 ## To Do List
 
