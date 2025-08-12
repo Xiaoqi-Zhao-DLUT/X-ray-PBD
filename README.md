@@ -2,7 +2,7 @@
 
 This repo is for the following two works:
 
-**Power Battery Detection** [[Paper]](https://arxiv.org/pdf/2312.02528v2.pdf) 
+**Power Battery Detection** [[Paper]](https://arxiv.org/pdf/2508.07797) 
 <br>_Xiaoqi Zhao, Peiqian Cao, Lihe Zhang, Zonglei Feng, Hanqi Liu, Jiaming Zuo, Youwei Pang, Weisi Lin, Georges El Fakhri, Huchuan Lu, Xiaofeng Liu_<br>
 In arXiv 2025 (T-PAMI under review)
 
@@ -14,7 +14,7 @@ In CVPR 2024
 ### !! If you are interested in Ai4Industry, feel free to contact with us via Email (xiaoqi.zhao@yale.edu, lartpang@gmail.com)
 
 ## News
-- Our extension work "**Power Battery Detection**" is available at [arXiv](https://arxiv.org/pdf/2312.02528v2.pdf).
+- Our extension work "**Power Battery Detection**" is available at [arXiv](https://arxiv.org/pdf/2508.07797).
   
 ## Motivation of Power Battery Detection
 | PBD5K |
