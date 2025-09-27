@@ -3,7 +3,7 @@
 This repo is for the following two works:
 
 **Power Battery Detection** [[Paper]](https://arxiv.org/pdf/2508.07797) 
-<br>_Xiaoqi Zhao, Peiqian Cao, Lihe Zhang, Zonglei Feng, Hanqi Liu, Jiaming Zuo, Youwei Pang, Weisi Lin, Georges El Fakhri, Huchuan Lu, Xiaofeng Liu_<br>
+<br>_Xiaoqi Zhao, Peiqian Cao, Chenyang Yu, Zonglei Feng, Lihe Zhang, Hanqi Liu, Jiaming Zuo, Youwei Pang, Jinsong Ouyang, Weisi Lin, Georges El Fakhri, Huchuan Lu, Xiaofeng Liu_<br>
 In arXiv 2025
 
 **Towards Automatic Power Battery Detection:  New Challenge, Benchmark Dataset and Baseline** [[Paper]](https://arxiv.org/pdf/2312.02528v2.pdf) 
