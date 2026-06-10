@@ -1,14 +1,14 @@
-# [CVPR'24/arXiv'25] Power Battery Detection
+# [IJCV'26/CVPR'24] Power Battery Detection
 
 This repo is for the following two works:
 
 **Power Battery Detection** [[Paper]](https://arxiv.org/pdf/2508.07797) 
 <br>_Xiaoqi Zhao, Peiqian Cao, Chenyang Yu, Zonglei Feng, Lihe Zhang, Hanqi Liu, Jiaming Zuo, Youwei Pang, Jinsong Ouyang, Weisi Lin, Georges El Fakhri, Huchuan Lu, Xiaofeng Liu_<br>
-In arXiv 2025
+IJCV 2026
 
 **Towards Automatic Power Battery Detection:  New Challenge, Benchmark Dataset and Baseline** [[Paper]](https://arxiv.org/pdf/2312.02528v2.pdf) 
 <br>_Xiaoqi Zhao, Youwei Pang, Zhenyu Chen, Qian Yu, Lihe Zhang, Hanqi Liu, Jiaming Zuo, Huchuan Lu_<br>
-In CVPR 2024
+CVPR 2024
 
 
 ### !! If you are interested in Ai4Industry, feel free to contact with us via Email (xiaoqi.zhao@yale.edu, lartpang@gmail.com)
